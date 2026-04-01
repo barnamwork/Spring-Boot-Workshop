@@ -24,4 +24,20 @@ public class AddressBookController {
     public AddressBook create(@RequestBody AddressBookDTO dto) {
         return service.create(dto);
     }
+
+    @GetMapping("/get/{id}")
+    public AddressBook getById(@PathVariable int id) {
+        return service.getById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public AddressBook update(@PathVariable int id, @RequestBody AddressBookDTO dto) {
+        return service.update(id, dto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
+        service.delete(id);
+        return "Deleted Successfully";
+    }
 }

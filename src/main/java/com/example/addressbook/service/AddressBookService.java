@@ -22,4 +22,24 @@ public class AddressBookService {
         list.add(obj);
         return obj;
     }
+
+    public AddressBook getById(int id) {
+        return list.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public AddressBook update(int id, AddressBookDTO dto) {
+        AddressBook obj = getById(id);
+        if (obj != null) {
+            obj.setName(dto.name);
+            obj.setCity(dto.city);
+        }
+        return obj;
+    }
+
+    public void delete(int id) {
+        list.removeIf(e -> e.getId() == id);
+    }
 }
